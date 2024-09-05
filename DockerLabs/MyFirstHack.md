@@ -13,6 +13,8 @@ sudo nmap -p- --open -sS -sC -sV --min-rate=5000 -vvv -n -Pn -oN escaneo 172.17.
 ```
 
 Vemos que está abierto el puerto 21, protocolo FTP, con la versión vsftpd 2.3.4
+![image](https://github.com/user-attachments/assets/3405fedd-0146-4b2c-a1ea-acb034bda4d5)
+
 
 ## 2. COMPROMISO DEL ENTORNO
 
