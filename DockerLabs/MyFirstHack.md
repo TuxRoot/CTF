@@ -29,12 +29,16 @@ Hay una vulnerabilidad: CVE-2011-2523
 
 Buscando exploit en internet encontramos lo siguiente https://www.exploit-db.com/exploits/49757 donde copiamos el script y ejecutamos, obtenido root en la máquina
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/04a726a8-94ce-4d9c-861c-5ef0f50a03ab/3149a61f-e2dd-4279-ac48-d2dca9edc963/image.png)
+![image](https://github.com/user-attachments/assets/941283bc-86dc-4dfd-a5a6-2d6c308491e3)
+
 
 La escalación también se puede realizar a través de metasploit
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/04a726a8-94ce-4d9c-861c-5ef0f50a03ab/111ef160-529f-43bd-95b2-4264ec03e4e9/image.png)
+![image](https://github.com/user-attachments/assets/20ad1843-f146-4d89-b68e-42172d5c0404)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/04a726a8-94ce-4d9c-861c-5ef0f50a03ab/5ed7179d-cb73-4f75-8ef7-2672036235b3/image.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/04a726a8-94ce-4d9c-861c-5ef0f50a03ab/18fd46c8-071d-4483-a9b8-94a2a1393327/image.png)
+![image](https://github.com/user-attachments/assets/6646b04b-7026-4b3c-8b20-ee37e8ecff10)
+
+
+![image](https://github.com/user-attachments/assets/1cb3a9a8-c5b7-44f3-aebf-9541c597c45b)
+
