@@ -1,5 +1,4 @@
-# BorazuwarahCTF
-
+<h1 align="center">BorazuwarahCTF</h1>
 ## 0. HERRAMIENTAS
 
 - Hydra
