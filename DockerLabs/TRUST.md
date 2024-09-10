@@ -1,4 +1,4 @@
-<h1 align="center">Tust</h1>
+<h1 align="center">Trust</h1>
 
 ## 0. HERRAMIENTAS
 
