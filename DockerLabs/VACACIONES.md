@@ -1,4 +1,4 @@
-# VACACIONES
+<h1 align="center">Vacaciones</h1>
 
 ## 0. HERRAMIENTAS
 
