@@ -1,5 +1,4 @@
-# OBSESSION
-
+<h1 align="center">Obsession</h1>
 ## 0. HERRAMIENTAS
 
 - Hydra
