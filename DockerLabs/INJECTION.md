@@ -2,8 +2,8 @@
 
 ## 0. HERRAMIENTAS
 
-- Hydra
-- metasploit
+- SQL Injection
+- Binario ENV
 
 ## 1. ENUMERACION
 
@@ -18,31 +18,37 @@ Vemos los puertos abiertos:
 - 22
 - 80
 
-![image.png](INJECTION%20935405421d254d14b62c06725839a533/image.png)
+![image](https://github.com/user-attachments/assets/85aa4e75-2746-4be7-931c-bdf7975a1b43)
+
 
 ## 2. COMPROMISO DEL ENTORNO
 
 Accedemos a la url y comprobamos que es un panel de login
 
-![image.png](INJECTION%20935405421d254d14b62c06725839a533/image%201.png)
+![image 1](https://github.com/user-attachments/assets/1e5e63ff-daad-4a37-973b-032689a22c0b)
+
 
 Pobaremos una inyección SQL simple: **' or 1=1-- -**
 
-![image.png](INJECTION%20935405421d254d14b62c06725839a533/image%202.png)
+![image 2](https://github.com/user-attachments/assets/48895e50-eb9e-4a5e-a88a-fc6e31420887)
+
 
 Nos muestra lo siguiente:
 
-![image.png](INJECTION%20935405421d254d14b62c06725839a533/image%203.png)
+![image 3](https://github.com/user-attachments/assets/0bf60867-c369-4882-8817-041e2c936307)
+
 
 Aquí ya tenemos un usuario y contraseña
 
 Probamos el acceso por ssh
 
-![image.png](INJECTION%20935405421d254d14b62c06725839a533/image%204.png)
+![image 4](https://github.com/user-attachments/assets/ff0f4749-d3b0-4578-a525-a84208655121)
+
 
 Probamos el sudo -l, pero vemos que no tiene
 
-![image.png](INJECTION%20935405421d254d14b62c06725839a533/image%205.png)
+![image 5](https://github.com/user-attachments/assets/16eb21a6-fd7e-4b98-b87c-e6fed2ddc192)
+
 
 ## 3. ESCALACION DE PRIVILEGIOS
 
@@ -52,12 +58,13 @@ Probamos a buscar binarios
 find / -perm -4000 2>/dev/null
 ```
 
-![image.png](INJECTION%20935405421d254d14b62c06725839a533/image%206.png)
+![image 6](https://github.com/user-attachments/assets/2685530a-e66a-4d97-ab2f-31e33c3cf801)
+
 
 Encontramos el binario /usr/bin/env
 
 En gtfobins buscamos como escalar privilegios con este binario
 
-![image.png](INJECTION%20935405421d254d14b62c06725839a533/image%207.png)
+![image 7](https://github.com/user-attachments/assets/7c0b4b23-8c2a-4827-b397-01a1b13f1981)
 
-![image.png](INJECTION%20935405421d254d14b62c06725839a533/image%208.png)
+![image 8](https://github.com/user-attachments/assets/097b53f1-3c39-472d-9dc5-7df27d25654c)
